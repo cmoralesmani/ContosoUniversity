@@ -96,11 +96,13 @@ namespace ContosoUniversity.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.Sql("INSERT INTO Department (Name, Budget, StartDate) VALUES ('Temp', 0.00, CURRENT_TIMESTAMP)");
+            migrationBuilder.Sql("INSERT INTO public.\"Department\"(\"Budget\", \"Name\", \"StartDate\") VALUES(0.0, 'Temp', CURRENT_TIMESTAMP)");
+            
+            //migrationBuilder.Sql("INSERT INTO Department (Name, Budget, StartDate) VALUES ('Temp', 0.00, CURRENT_TIMESTAMP)");
             // Default value for FK points to department created above, with
             // defaultValue changed to 1 in following AddColumn statement.
 
-            migrationBuilder.AddColumn<int>(
+        migrationBuilder.AddColumn<int>(
                 name: "DepartmentID",
                 table: "Course",
                 type: "int4",
