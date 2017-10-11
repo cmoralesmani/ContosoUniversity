@@ -76,14 +76,24 @@
         </li>
         @for (int numPage = 1; numPage <= Model.TotalPages; numPage++)
         {
-            <li class="page-item">
-                <a class="page-link"
-                   asp-action="Index"
-                   asp-route-sortOrder="@ViewData["CurrentSort"]"
-                   asp-route-page="@numPage"
-                   asp-route-currentFilter="@ViewData["CurrentFilter"]">
-                    @numPage
-                </a>
+            <li class="page-item @(Model.PageIndex == @numPage ? "active" : "")">
+                @if (Model.PageIndex == numPage)
+                {
+                    <span class="page-link">
+                        @numPage
+                        <span class="sr-only">(current)</span>
+                    </span>
+                }
+                else
+                {
+                    <a class="page-link "
+                       asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-page="@numPage"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                        @numPage
+                    </a>
+                }
             </li>
         }
 
