@@ -1,5 +1,6 @@
 ﻿using ContosoUniversity.Models;
 using Microsoft.EntityFrameworkCore;
+using Npgsql.EntityFrameworkCore;
 
 namespace ContosoUniversity.Data
 {
@@ -29,6 +30,13 @@ namespace ContosoUniversity.Data
 
             modelBuilder.Entity<CourseAssignment>()
                 .HasKey(c => new { c.CourseID, c.InstructorID });
+
+            modelBuilder.Entity<Department>()
+                .Property(e => e.ConcurrencyStamp)
+                .HasColumnName("xmin")
+                .HasColumnType("xid")
+                .ValueGeneratedOnAddOrUpdate()
+                .IsConcurrencyToken();
         }
     }
 }

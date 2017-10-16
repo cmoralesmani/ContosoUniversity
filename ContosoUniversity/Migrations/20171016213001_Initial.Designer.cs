@@ -12,8 +12,8 @@ using System;
 namespace ContosoUniversity.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20171011225355_ComplexDataModel")]
-    partial class ComplexDataModel
+    [Migration("20171016213001_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,6 +60,12 @@ namespace ContosoUniversity.Migrations
 
                     b.Property<decimal>("Budget")
                         .HasColumnType("money");
+
+                    b.Property<uint>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnName("xmin")
+                        .HasColumnType("xid");
 
                     b.Property<int?>("InstructorID");
 
